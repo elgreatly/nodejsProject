@@ -1,0 +1,38 @@
+{
+    "name": "express-titan-example",
+    "version": "0.0.1",
+    "description": "a template for express, passwort, node.js, titan database",
+    "main": "app.js",
+    "scripts": {
+        "start": "node app.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:Modeso/express-titan-example.git"
+    },
+    "keywords": [
+        "nodejs",
+        "express",
+        "passport",
+        "template",
+        "titan"
+    ],
+    "author": "Samuel Schmid <samuel.schmid@modeso.ch>",
+    "license": "MIT",
+    "dependencies": {
+        "express": "4.13.3",
+        "passport": "0.3.2",
+        "passport-twitter": "1.0.3",
+        "passport-twitter-token": "1.1.0",
+        "compression" : "1.6.0",
+        "body-parser" : "1.14.2",
+        "cookie-parser" : "1.4.0",
+        "morgan" : "1.6.1",
+        "serve-favicon" : "2.3.0",
+        "method-override" : "2.3.5",
+        "express-session" : "1.12.1",
+        "errorhandler" : "1.4.2",
+        "jade": "1.11.0",
+        "grex": "0.8.0"
+    }
+}
