@@ -20,6 +20,7 @@ var errorHandler = require('errorhandler');
 
 var app = express();
 
+var movies = require('./routes/movies');
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('json spaces', 2);
@@ -56,9 +57,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 var User = require('./Users/user')(grex, grexOptions);
-
+var movies = require('./routes/movies');
 //Passport configuration via Web
-var oauth = require('./oauth.js');
+var oauth = require('./oauth-example.js');
 passport.use(new TwitterStrategy({
         consumerKey: oauth.twitter.consumerKey,
         consumerSecret: oauth.twitter.consumerSecret,
@@ -84,9 +85,16 @@ passport.use(new TwitterTokenStrategy({
 app.get('/', routes.index);
 app.get('/ping', routes.ping);
 app.get('/partials/:name', routes.partials);
+//app.get('/', movies);
 
 // JSON API
 app.get('/api/name', api.name);
+app.get('/api/getmovies', movies.getMovies);
+app.post('/api/getmovieactor', movies.getMovieActor);
+app.post('/api/getmoviedirector', movies.getMovieDirector);
+app.post('/api/getmovieswithpersonid', movies.getMovieWithPersonId);
+app.post('/api/addnewdirector', movies.addNewDirector);
+app.post('/api/removedirector', movies.removeDirector);
 
 // redirect all others to the index (HTML5 history)
 //app.get('*', routes.index);

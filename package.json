@@ -33,6 +33,7 @@
         "express-session" : "1.12.1",
         "errorhandler" : "1.4.2",
         "jade": "1.11.0",
-        "grex": "0.8.0"
+        "grex": "0.8.0",
+        "node-neo4j": "^2.0.3"
     }
 }

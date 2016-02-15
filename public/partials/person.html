@@ -1,0 +1,11 @@
+<ul>
+    <li ng-repeat="movie in movies">
+        <h3>
+            <a href="http://localhost:3000/movie/{{movie.movie._id}}/{{movie.movie.title}}">
+                {{movie.movie.title}}
+            </a>
+        </h3>
+        <p>Relation: {{movie.relation}}</p>
+        <p>roles: {{movie.roles}}</p>
+    </li>
+</ul>

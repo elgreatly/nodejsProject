@@ -1,0 +1,30 @@
+<h1>{{movieName}}</h1>
+Actors
+<ul>
+    <li ng-repeat="actor in actors">
+        <a href="http://localhost:3000/person/{{actor.actor._id}}/{{actor.actor.name}}">
+            {{actor.actor.name}}
+        </a>
+        <p>roles:</p>
+        <ul>
+            <li ng-repeat="role in actor.roles">
+                {{role}}
+            </li>
+        </ul>
+    </li>
+</ul>
+
+Directors
+<ul>
+    <li ng-repeat="director in directors">
+        <a href="http://localhost:3000/person/{{director._id}}/{{director.name}}">
+            {{director.name}}
+        </a>
+        <div ng-click="deleteDirector(director._id)">X</div>
+    </li>
+</ul>
+<div class="addNewDirector">
+    <h3>Add Director</h3>
+    <input type="text" ng-model="newDirector"/>
+    <button ng-click="addNewDirector()">Submit</button>
+</div>
