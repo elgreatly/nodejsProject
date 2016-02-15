@@ -1,10 +1,10 @@
 //var express = require('express');
 //var router = express.Router();
 var neo4j = require('node-neo4j');
-var databaseUsername = 'neo4j';
-var databasePassword = '01115192714';
+var databaseUsername = 'neo4jusername';
+var databasePassword = 'neo4jpassword';
 var host = 'localhost';
-var databasePort = '7474';
+var databasePort = 'port';
 db = new neo4j('http://' + databaseUsername + ':' + databasePassword + '@' + host + ':'+ databasePort);
 exports.getMovies = function(req, res) {
     //Run raw cypher with params
