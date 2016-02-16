@@ -1,27 +1,24 @@
-//var express = require('express');
-//var router = express.Router();
+var express = require('express');
+var router = express.Router();
 var neo4j = require('node-neo4j');
-var databaseUsername = 'neo4jusername';
-var databasePassword = 'neo4jpassword';
+var databaseUsername = 'neo4j';
+var databasePassword = '01115192714';
 var host = 'localhost';
-var databasePort = 'port';
+var databasePort = '7474';
 db = new neo4j('http://' + databaseUsername + ':' + databasePassword + '@' + host + ':'+ databasePort);
-exports.getMovies = function(req, res) {
+
+router.get('/getmovies', function(req, res, next) {
     //Run raw cypher with params
     db.cypherQuery(
         'MATCH (movie:Movie) RETURN movie LIMIT 10', function (err, movie) {
             if (err) {
                 return console.log(err);
             }
-            //console.log(movie.data); // delivers an array of query results
-            //console.log(movie.columns); // delivers an array of names of objects getting returned
             res.json(movie.data);
     });
-    //console.log(req.body.title);
-    //res.json({name: "here"});
-};
+});
 
-exports.getMovieActor = function(req, res) {
+router.post('/getmovieactor', function(req, res) {
     db.cypherQuery(
         'MATCH (actor:Person)-[role:ACTED_IN]->(movie:Movie) WHERE id(movie) = '+req.body.movieId+' RETURN actor, role.roles LIMIT 10', function (err, actor) {
             if (err) {
@@ -33,9 +30,9 @@ exports.getMovieActor = function(req, res) {
             }
             res.json(actors);
     });
-};
+});
 
-exports.getMovieDirector = function(req, res) {
+router.post('/getmoviedirector', function(req, res) {
     db.cypherQuery(
         'MATCH (director:Person)-[:DIRECTED]->(movie:Movie) WHERE id(movie) = '+req.body.movieId+' RETURN director LIMIT 10', function (err, director) {
             if (err) {
@@ -43,9 +40,9 @@ exports.getMovieDirector = function(req, res) {
             }
             res.json(director.data);
     });
-};
+});
 
-exports.getMovieWithPersonId = function(req, res) {
+router.post('/getmovieswithpersonid', function(req, res) {
     db.cypherQuery(
         'MATCH (person:Person)-[relation]->(movie:Movie) WHERE id(person) = '+req.body.personId+' RETURN movie, type(relation), relation.roles LIMIT 10', function (err, movie) {
             if (err) {
@@ -57,9 +54,9 @@ exports.getMovieWithPersonId = function(req, res) {
             }
             res.json(movieData);
     });
-};
+});
 
-exports.addNewDirector = function(req, res) {
+router.post('/addnewdirector', function(req, res) {
     db.cypherQuery(
         'MERGE (person:Person {name: "'+ req.body.directorName +'"}) RETURN person', function (err, movie) {
             if (err) {
@@ -80,9 +77,9 @@ exports.addNewDirector = function(req, res) {
             });
     });
     
-};
+});
 
-exports.removeDirector = function(req, res) {
+router.post('/removedirector', function(req, res) {
     db.cypherQuery(
         'MATCH (director:Person)-[rel:DIRECTED]->(movie:Movie) WHERE id(movie) = '+req.body.movieId+' AND id(director) = '+req.body.directorId+' DELETE rel', function (err, director) {
             if (err) {
@@ -98,8 +95,6 @@ exports.removeDirector = function(req, res) {
             });
     });
     
-};
+});
 
-
-
-//module.exports = router;
+module.exports = router;

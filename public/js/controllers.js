@@ -18,7 +18,7 @@ app.controller('AppCtrl', function ($scope, $http) {
 .controller('moviesCtrl', function ($scope, $http) {
     $http({
         method: 'GET',
-        url: '/api/getmovies',
+        url: '/api/movies/getmovies',
     }).success(function (data, status, headers, config) {
         $scope.movies = data;
     });
@@ -27,7 +27,7 @@ app.controller('AppCtrl', function ($scope, $http) {
     $scope.movieName = $routeParams.movieName;
     $http({
         method: 'POST',
-        url: '/api/getmovieactor',
+        url: '/api/movies/getmovieactor',
         data: {
             movieId: $routeParams.movieId
         }
@@ -37,7 +37,7 @@ app.controller('AppCtrl', function ($scope, $http) {
     
     $http({
         method: 'POST',
-        url: '/api/getmoviedirector',
+        url: '/api/movies/getmoviedirector',
         data: {
             movieId: $routeParams.movieId
         }
@@ -48,7 +48,7 @@ app.controller('AppCtrl', function ($scope, $http) {
     $scope.addNewDirector = function(){
        $http({
             method: 'POST',
-            url: '/api/addnewdirector',
+            url: '/api/movies/addnewdirector',
             data: {
                 directorName: $scope.newDirector,
                 movieName: $scope.movieName,
@@ -62,7 +62,7 @@ app.controller('AppCtrl', function ($scope, $http) {
     $scope.deleteDirector = function(directorId){
         $http({
             method: 'POST',
-            url: '/api/removedirector',
+            url: '/api/movies/removedirector',
             data: {
                 directorId: directorId,
                 movieId: $routeParams.movieId
@@ -77,7 +77,7 @@ app.controller('AppCtrl', function ($scope, $http) {
     $scope.personName = $routeParams.personName;
     $http({
         method: 'POST',
-        url: '/api/getmovieswithpersonid',
+        url: '/api/movies/getmovieswithpersonid',
         data: {
             personId: $routeParams.personId
         }

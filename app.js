@@ -20,7 +20,6 @@ var errorHandler = require('errorhandler');
 
 var app = express();
 
-var movies = require('./routes/movies');
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('json spaces', 2);
@@ -89,12 +88,9 @@ app.get('/partials/:name', routes.partials);
 
 // JSON API
 app.get('/api/name', api.name);
-app.get('/api/getmovies', movies.getMovies);
-app.post('/api/getmovieactor', movies.getMovieActor);
-app.post('/api/getmoviedirector', movies.getMovieDirector);
-app.post('/api/getmovieswithpersonid', movies.getMovieWithPersonId);
-app.post('/api/addnewdirector', movies.addNewDirector);
-app.post('/api/removedirector', movies.removeDirector);
+var movies = require('./routes/movies');
+
+app.use('/api/movies', movies);
 
 // redirect all others to the index (HTML5 history)
 //app.get('*', routes.index);
