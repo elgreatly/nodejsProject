@@ -88,9 +88,12 @@ app.get('/partials/:name', routes.partials);
 
 // JSON API
 app.get('/api/name', api.name);
-var movies = require('./routes/movies');
 
+var movies = require('./routes/movies');
 app.use('/api/movies', movies);
+
+var users = require('./routes/users');
+app.use('/api/users', users);
 
 // redirect all others to the index (HTML5 history)
 //app.get('*', routes.index);

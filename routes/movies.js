@@ -5,7 +5,7 @@ var databaseUsername = 'neo4j';
 var databasePassword = '01115192714';
 var host = 'localhost';
 var databasePort = '7474';
-db = new neo4j('http://' + databaseUsername + ':' + databasePassword + '@' + host + ':'+ databasePort);
+var db = new neo4j('http://' + databaseUsername + ':' + databasePassword + '@' + host + ':'+ databasePort);
 
 router.get('/getmovies', function(req, res, next) {
     //Run raw cypher with params
